@@ -1,0 +1,44 @@
+node_modules
+dist
+.DS_Store
+server/public
+vite.config.ts.*
+*.tar.gz
+uploads
+
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# Local development state
+.local/
+
+# Logs and temporary files
+*.log
+tmp/
+temp/
+
+# IDE/editor files
+.vscode/
+.idea/
+
+# OS files
+Thumbs.db
+
+# Test/debug artifacts
+coverage/
+
+# Local/test authentication artifacts
+cookies.txt
+login_cookies.txt
+
+# Local debug leftovers
+debug_auth_test.js
+debug_input_test.html
+emergency_input_fix.js
+fix_input_blocking.js
+
+
+# Original assignment/reference material
+attached_assets/
