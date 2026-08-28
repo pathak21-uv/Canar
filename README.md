@@ -291,9 +291,3 @@ npm start      # NODE_ENV=production node dist/index.js
 ```
 
 Environment (see `.env.example`): `DATABASE_URL`, `SESSION_SECRET`, `PORT` (default 5000). Do not commit `.env`.
-
-## Further reading
-
-- [docs/PROJECT_SUMMARY.md](docs/PROJECT_SUMMARY.md) — detailed design and bug history
-- [docs/INTERVIEW_GUIDE.md](docs/INTERVIEW_GUIDE.md) — interview Q&A
-- [docs/FIX_HISTORY.md](docs/FIX_HISTORY.md) — problem / fix table
