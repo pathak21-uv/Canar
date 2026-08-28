@@ -23,7 +23,7 @@ export default function LandingPage() {
     <div className="min-h-screen">
       {/* Navigation */}
       <nav className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="page-container">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
               <div className="flex-shrink-0">
@@ -75,7 +75,7 @@ export default function LandingPage() {
 
       {/* Hero Section */}
       <div className="bg-white overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
+        <div className="page-container py-12 sm:py-16 lg:py-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-center">
             <main>
               <div className="sm:text-center lg:text-left">
@@ -86,7 +86,7 @@ export default function LandingPage() {
                 <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
                   Create stunning professional profiles with our credit-based builder. Autosave, export to PDF, and share with the world.
                 </p>
-                <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
+                <div className="mt-5 sm:mt-8 flex flex-col gap-3 md:flex-row md:justify-center lg:justify-start">
                   <div className="rounded-md shadow">
                     <Button
                       size="lg"
@@ -96,7 +96,7 @@ export default function LandingPage() {
                       {user ? "Continue Profile" : "Start Building"}
                     </Button>
                   </div>
-                  <div className="mt-3 sm:mt-0 sm:ml-3">
+                  <div>
                     <Button
                       variant="outline"
                       size="lg"
@@ -111,7 +111,7 @@ export default function LandingPage() {
             </main>
             <div>
               <img
-                className="h-56 w-full object-cover sm:h-72 md:h-96 lg:h-[430px]"
+                className="h-56 w-full object-cover sm:h-72 md:h-96 lg:h-[26.875rem]"
                 src="https://images.unsplash.com/photo-1556740758-90de374c12ad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
                 alt="Professional workspace"
               />
@@ -122,10 +122,10 @@ export default function LandingPage() {
 
       {/* Features Section */}
       <div className="py-12 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="page-container">
           <div className="lg:text-center">
             <h2 className="text-base text-primary font-semibold tracking-wide uppercase">Features</h2>
-            <p className="mt-2 text-3xl leading-8 font-bold tracking-tight text-gray-900 sm:text-4xl">
+            <p className="mt-2 text-3xl leading-8 font-bold tracking-tight text-gray-900 sm:text-4xl text-balance">
               Everything you need to build professional profiles
             </p>
           </div>

@@ -109,8 +109,8 @@ export function CVUpload({ onUpload, currentCV, currentCVName, currentCVUploaded
     >
       <div className="space-y-4">
         {hasCV && (
-          <div className="flex items-start justify-between gap-4">
-            <div className="min-w-0">
+          <div className="flex items-start justify-between gap-4 min-w-0">
+            <div className="min-w-0 flex-1">
               <p className="truncate text-sm font-semibold text-gray-900">
                 {currentCVName || "Uploaded CV"}
               </p>
@@ -119,7 +119,7 @@ export function CVUpload({ onUpload, currentCV, currentCVName, currentCVUploaded
               </p>
             </div>
             {!disabled && (
-              <div className="flex items-center gap-2">
+              <div className="flex flex-shrink-0 items-center gap-2">
                 <Button
                   type="button"
                   variant="ghost"

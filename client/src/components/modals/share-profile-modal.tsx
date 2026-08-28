@@ -49,7 +49,7 @@ export function ShareProfileModal({ open, onClose, shareUrl }: ShareProfileModal
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-md">
+      <DialogContent className="max-h-[min(90dvh,40rem)] overflow-y-auto sm:max-w-md">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <Share2 className="h-5 w-5" />
@@ -63,12 +63,12 @@ export function ShareProfileModal({ open, onClose, shareUrl }: ShareProfileModal
         <div className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="share-url">Public Profile URL</Label>
-            <div className="flex gap-2">
+            <div className="flex min-w-0 gap-2">
               <Input
                 id="share-url"
                 value={shareUrl || "Generate your profile to get a shareable link"}
                 readOnly
-                className="flex-1"
+                className="min-w-0 flex-1"
               />
               <Button
                 onClick={handleCopyUrl}
@@ -81,7 +81,7 @@ export function ShareProfileModal({ open, onClose, shareUrl }: ShareProfileModal
             </div>
           </div>
 
-          <div className="flex gap-2 pt-4">
+          <div className="flex flex-col-reverse gap-2 pt-4 sm:flex-row">
             <Button
               onClick={handleOpenProfile}
               disabled={!shareUrl}

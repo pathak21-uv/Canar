@@ -72,7 +72,7 @@ export function CreditTopupModal({
 
   return (
     <Dialog open={open} onOpenChange={(nextOpen) => !isProcessing && !nextOpen && onClose()}>
-      <DialogContent className="sm:max-w-lg">
+      <DialogContent className="max-h-[min(90dvh,40rem)] overflow-y-auto sm:max-w-lg">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <Coins className="h-5 w-5" />
@@ -115,12 +115,13 @@ export function CreditTopupModal({
                 </div>
               </CardHeader>
               <CardContent className="pt-0">
-                <div className="flex justify-between items-center">
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                   <span className="text-sm text-gray-500">
                     Does not change your {planType || "current"} plan
                   </span>
                   <Button
                     size="sm"
+                    className="w-full sm:w-auto"
                     disabled={isProcessing}
                     onClick={handleTopup}
                   >

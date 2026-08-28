@@ -7,21 +7,10 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Separator } from "@/components/ui/separator";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { useAuth } from "@/hooks/use-auth";
-import { CreditCounter } from "@/components/credit-counter";
 import { SearchableCombobox } from "@/components/searchable-combobox";
+import { ProfileBuilderHeader } from "@/components/profile-builder-header";
 import { AutosaveToast } from "@/components/autosave-toast";
 import { CreditTopupModal } from "@/components/modals/credit-topup-modal";
 import { ShareProfileModal } from "@/components/modals/share-profile-modal";
@@ -35,7 +24,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import { Plus, Trash2, FileText, Share, Upload, Eye, Edit, GraduationCap, Code, Briefcase, Award, LogOut, User, ChevronDown } from "lucide-react";
+import { Plus, Trash2, FileText, Share, Upload, GraduationCap, Code, Briefcase, Award } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import debounce from "lodash.debounce";
 import { PhotoUpload, CVUpload } from "@/components/file-upload";
@@ -870,138 +859,31 @@ export default function ProfileBuilderPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Professional Header */}
-      <div className="bg-white shadow-sm border-b sticky top-0 z-40">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap items-center justify-between gap-3 py-3 lg:h-16 lg:flex-nowrap lg:py-0">
-            <div className="flex min-w-0 items-center gap-2 sm:gap-3">
-              <button
-                type="button"
-                onClick={() => setLocation("/")}
-                className="flex min-w-0 items-center gap-2 sm:gap-3 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                aria-label="Go to home page"
-              >
-              <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                <Briefcase className="w-5 h-5 text-white" />
-              </div>
-              <h1 className="text-xl sm:text-2xl font-bold text-gray-900 truncate">Canar</h1>
-              </button>
-            </div>
-
-            <div className="order-3 flex w-full items-center gap-3 overflow-x-auto lg:order-none lg:w-auto lg:overflow-visible">
-              <CreditCounter
-                credits={credits?.creditsRemaining || 0}
-                planType={credits?.planType}
-                showBuyButton={false}
-              />
-              <Separator orientation="vertical" className="hidden h-6 sm:block" />
-              <div className="flex items-center bg-gray-100 rounded-lg p-1 flex-shrink-0">
-                <Button
-                  variant={!isPreviewMode ? "default" : "ghost"}
-                  onClick={() => setIsPreviewMode(false)}
-                  size="sm"
-                  className="rounded-md text-sm"
-                >
-                  <Edit className="h-4 w-4 mr-1" />
-                  Edit
-                </Button>
-                <Button
-                  variant={isPreviewMode ? "default" : "ghost"}
-                  onClick={() => setIsPreviewMode(true)}
-                  size="sm"
-                  className="rounded-md text-sm"
-                >
-                  <Eye className="h-4 w-4 mr-1" />
-                  Preview
-                </Button>
-              </div>
-              {saveStatus !== "idle" && (
-                <>
-                  <Separator orientation="vertical" className="hidden h-6 md:block" />
-                  <div className="flex items-center gap-2 flex-shrink-0">
-                    <Badge variant={saveStatus === "error" ? "destructive" : "secondary"}>
-                      {saveStatus === "saving" && "Saving..."}
-                      {saveStatus === "saved" && "Saved ✓"}
-                      {saveStatus === "error" && "Unable to save"}
-                    </Badge>
-                    {saveStatus === "error" && (
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => lastRetryRef.current?.()}
-                        title={saveError || "Retry save"}
-                      >
-                        Retry
-                      </Button>
-                    )}
-                  </div>
-                </>
-              )}
-            </div>
-
-            <div className="flex items-center gap-2 sm:gap-3">
-              {hasActiveSubscription ? (
-                <Button
-                  onClick={() => setShowCreditModal(true)}
-                  size="sm"
-                  className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white"
-                >
-                  <Plus className="h-4 w-4" />
-                  <span className="hidden sm:inline">Buy Credits</span>
-                  <span className="sm:hidden">Buy</span>
-                </Button>
-              ) : (
-                <Button
-                  onClick={() => setLocation("/subscription")}
-                  size="sm"
-                  variant="outline"
-                >
-                  Choose a plan
-                </Button>
-              )}
-              <Separator orientation="vertical" className="hidden h-6 sm:block" />
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="outline" size="sm" className="h-9 gap-2 rounded-full px-2 sm:px-3">
-                    <Avatar className="h-6 w-6">
-                      <AvatarFallback>
-                        <User className="h-4 w-4" />
-                      </AvatarFallback>
-                    </Avatar>
-                    <ChevronDown className="h-4 w-4 text-gray-500" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-64">
-                  <DropdownMenuLabel className="text-xs text-gray-500">Account</DropdownMenuLabel>
-                  <div className="px-2 pb-2 text-sm font-medium text-gray-900 truncate">
-                    {user?.email || "Signed in user"}
-                  </div>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem onClick={() => setShowShareModal(true)}>
-                    <Share className="h-4 w-4" />
-                    Share
-                  </DropdownMenuItem>
-                  <DropdownMenuItem onClick={handleExportPDF}>
-                    <FileText className="h-4 w-4" />
-                    Export PDF
-                  </DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem onClick={handleLogout} disabled={logoutMutation.isPending}>
-                    <LogOut className="h-4 w-4" />
-                    Logout
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </div>
-          </div>
-        </div>
-      </div>
+      <ProfileBuilderHeader
+        isPreviewMode={isPreviewMode}
+        onEdit={() => setIsPreviewMode(false)}
+        onPreview={() => setIsPreviewMode(true)}
+        onHome={() => setLocation("/")}
+        onBuyCredits={() => setShowCreditModal(true)}
+        onChoosePlan={() => setLocation("/subscription")}
+        onShare={() => setShowShareModal(true)}
+        onExport={handleExportPDF}
+        onLogout={handleLogout}
+        onRetrySave={() => lastRetryRef.current?.()}
+        hasActiveSubscription={hasActiveSubscription}
+        creditsRemaining={credits?.creditsRemaining || 0}
+        planType={credits?.planType}
+        userEmail={user?.email}
+        logoutPending={logoutMutation.isPending}
+        saveStatus={saveStatus}
+        saveError={saveError}
+      />
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="page-container py-6 sm:py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
           {/* Profile Sections (Left Column) */}
-          <div className="lg:col-span-2 space-y-8">
+          <div className="lg:col-span-2 min-w-0 space-y-6 sm:space-y-8">
             {/* Personal Information Section */}
             <Card>
               <CardHeader>
@@ -1084,7 +966,7 @@ export default function ProfileBuilderPage() {
 
             {/* Education Section */}
             <Card>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-6">
+              <CardHeader className="flex flex-col gap-3 space-y-0 pb-6 sm:flex-row sm:items-center sm:justify-between">
                 <CardTitle>Education</CardTitle>
                 {!isPreviewMode && (
                   <Button
@@ -1097,7 +979,7 @@ export default function ProfileBuilderPage() {
                       duration: buildDurationLabel(currentMonthValue(), null, true)
                     })}
                     size="sm"
-                    className="flex items-center gap-2"
+                    className="flex w-full items-center gap-2 sm:w-auto"
                   >
                     <Plus className="h-4 w-4" />
                     Add Education
@@ -1182,7 +1064,7 @@ export default function ProfileBuilderPage() {
 
             {/* Projects Section */}
             <Card>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-6">
+              <CardHeader className="flex flex-col gap-3 space-y-0 pb-6 sm:flex-row sm:items-center sm:justify-between">
                 <CardTitle className="flex items-center gap-2">
                   <Code className="h-5 w-5" />
                   Projects
@@ -1199,7 +1081,7 @@ export default function ProfileBuilderPage() {
                       duration: buildDurationLabel(currentMonthValue(), null, true)
                     })}
                     size="sm"
-                    className="flex items-center gap-2"
+                    className="flex w-full items-center gap-2 sm:w-auto"
                   >
                     <Plus className="h-4 w-4" />
                     Add Project
@@ -1293,7 +1175,7 @@ export default function ProfileBuilderPage() {
 
             {/* Skills Section */}
             <Card>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-6">
+              <CardHeader className="flex flex-col gap-3 space-y-0 pb-6 sm:flex-row sm:items-center sm:justify-between">
                 <CardTitle className="flex items-center gap-2">
                   <Award className="h-5 w-5" />
                   Skills
@@ -1305,7 +1187,7 @@ export default function ProfileBuilderPage() {
                       proficiency: "Intermediate"
                     })}
                     size="sm"
-                    className="flex items-center gap-2"
+                    className="flex w-full items-center gap-2 sm:w-auto"
                   >
                     <Plus className="h-4 w-4" />
                     Add Skill
@@ -1385,7 +1267,7 @@ export default function ProfileBuilderPage() {
 
             {/* Work Experience Section */}
             <Card>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-6">
+              <CardHeader className="flex flex-col gap-3 space-y-0 pb-6 sm:flex-row sm:items-center sm:justify-between">
                 <CardTitle className="flex items-center gap-2">
                   <Briefcase className="h-5 w-5" />
                   Work Experience
@@ -1402,7 +1284,7 @@ export default function ProfileBuilderPage() {
                       description: "Key responsibilities and achievements..."
                     })}
                     size="sm"
-                    className="flex items-center gap-2"
+                    className="flex w-full items-center gap-2 sm:w-auto"
                   >
                     <Plus className="h-4 w-4" />
                     Add Experience
@@ -1500,7 +1382,7 @@ export default function ProfileBuilderPage() {
           </div>
 
           {/* Right Sidebar - Profile Summary */}
-          <div className="space-y-6">
+          <div className="min-w-0 space-y-6">
             {/* Profile Summary Card */}
             <Card>
               <CardHeader>
@@ -1520,8 +1402,8 @@ export default function ProfileBuilderPage() {
                     )}
                   </div>
                   <div>
-                    <h3 className="font-semibold text-lg">{profile?.name || "Your Name"}</h3>
-                    <p className="text-gray-600 text-sm">{profile?.email || "your@email.com"}</p>
+                    <h3 className="font-semibold text-lg break-words">{profile?.name || "Your Name"}</h3>
+                    <p className="text-gray-600 text-sm break-all">{profile?.email || "your@email.com"}</p>
                   </div>
                   <div className="text-sm text-gray-600 bg-gray-50 rounded-lg p-3">
                     <p className="font-medium">Profile Completion</p>

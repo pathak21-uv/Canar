@@ -171,8 +171,8 @@ export default function SubscriptionPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-50 py-8 sm:py-12">
+      <div className="page-container">
         <Button
           variant="ghost"
           size="sm"
@@ -184,7 +184,7 @@ export default function SubscriptionPage() {
         </Button>
 
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Choose Your Plan</h2>
+          <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl text-balance">Choose Your Plan</h2>
           <p className="mt-4 text-lg text-gray-600">
             Select a subscription to start building your professional profile. Payment is simulated for this assignment.
           </p>
@@ -251,7 +251,7 @@ export default function SubscriptionPage() {
                   </div>
                 )}
 
-                <CardContent className="p-8">
+                <CardContent className="p-6 sm:p-8">
                   <div className="text-center">
                     <h3 className="text-2xl font-semibold text-gray-900 mb-4">{plan.name}</h3>
                     <p className="text-gray-600 mb-8">
@@ -261,11 +261,11 @@ export default function SubscriptionPage() {
                     </p>
 
                     <div className="mb-8">
-                      <div className="flex items-baseline justify-center">
-                        <span className="text-5xl font-bold text-gray-900">
+                      <div className="flex flex-wrap items-baseline justify-center">
+                        <span className="text-4xl font-bold text-gray-900 sm:text-5xl">
                           {formatRupees(plan.price)}
                         </span>
-                        <span className="ml-1 text-xl text-gray-500">/ 30 days</span>
+                        <span className="ml-1 text-lg text-gray-500 sm:text-xl">/ 30 days</span>
                       </div>
                       <p className="mt-2 text-sm text-gray-500">{plan.credits} credits included</p>
                       <p className="mt-1 text-xs text-gray-400">No automatic renewal. Assignment simulation only.</p>
@@ -314,7 +314,7 @@ export default function SubscriptionPage() {
           if (!open && !isPending) setPendingAction(null);
         }}
       >
-        <DialogContent className="sm:max-w-md">
+        <DialogContent className="max-h-[min(90dvh,40rem)] overflow-y-auto sm:max-w-md">
           <DialogHeader>
             <DialogTitle>
               {pendingAction?.kind === "upgrade" ? "Upgrade to Premium" : `Confirm ${pendingAction?.plan.name} plan`}

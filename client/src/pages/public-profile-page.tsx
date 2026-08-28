@@ -101,15 +101,15 @@ export default function PublicProfilePage({ params }: { params?: { shareSlug?: s
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="bg-white shadow-sm border-b">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <div className="page-container-narrow flex h-16 items-center justify-between">
           <Link href="/" className="text-xl font-bold text-gray-900">Canar</Link>
           <Badge variant="secondary">Public profile</Badge>
         </div>
       </div>
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+      <div className="page-container-narrow space-y-8 py-8">
         <Card>
-          <CardContent className="p-8 flex flex-col sm:flex-row items-center sm:items-start gap-6">
+          <CardContent className="flex flex-col items-center gap-6 p-6 sm:flex-row sm:items-start sm:p-8">
             <div className="w-24 h-24 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center overflow-hidden flex-shrink-0">
               {profile.photoUrl ? (
                 <img src={profile.photoUrl} alt={profile.name || "Profile photo"} className="w-24 h-24 object-cover" />
@@ -118,7 +118,7 @@ export default function PublicProfilePage({ params }: { params?: { shareSlug?: s
               )}
             </div>
             <div className="text-center sm:text-left">
-              <h1 className="text-3xl font-bold text-gray-900">{profile.name || "Professional profile"}</h1>
+              <h1 className="break-words text-3xl font-bold text-gray-900">{profile.name || "Professional profile"}</h1>
               {profile.email && <p className="text-gray-600 mt-1">{profile.email}</p>}
               {profile.bio && <p className="text-gray-700 mt-4 whitespace-pre-wrap">{profile.bio}</p>}
             </div>

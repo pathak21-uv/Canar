@@ -9,6 +9,20 @@ export default {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+        xl: "var(--radius-xl)",
+      },
+      spacing: {
+        "page-xs": "var(--space-xs)",
+        "page-sm": "var(--space-sm)",
+        "page-md": "var(--space-md)",
+        "page-lg": "var(--space-lg)",
+        "page-xl": "var(--space-xl)",
+        "page-2xl": "var(--space-2xl)",
+        "page-3xl": "var(--space-3xl)",
+      },
+      maxWidth: {
+        content: "var(--content-max)",
+        "content-narrow": "var(--content-narrow)",
       },
       colors: {
         background: "var(--background)",

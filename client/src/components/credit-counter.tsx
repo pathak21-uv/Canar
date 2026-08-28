@@ -10,8 +10,8 @@ interface CreditCounterProps {
 
 export function CreditCounter({ credits, planType, onClick, showBuyButton = true }: CreditCounterProps) {
   return (
-    <div className="flex items-center space-x-3">
-      <div className="flex items-center bg-gray-100 rounded-full px-4 py-2">
+    <div className="flex min-w-0 items-center space-x-3">
+      <div className="flex min-w-0 items-center whitespace-nowrap rounded-full bg-gray-100 px-3 py-2 sm:px-4">
         <Coins className="h-4 w-4 text-warning mr-2" />
         <span className="font-medium text-gray-900">{credits}</span>
         <span className="text-sm text-gray-600 ml-1">credits</span>

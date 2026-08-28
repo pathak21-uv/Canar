@@ -51,38 +51,14 @@ export default function AuthMinimal() {
     });
   };
 
-  const inputStyle: React.CSSProperties = {
-    width: '100%',
-    padding: '12px',
-    marginBottom: '16px',
-    border: '1px solid #ccc',
-    borderRadius: '4px',
-    fontSize: '16px',
-    backgroundColor: 'white',
-    color: 'black',
-    pointerEvents: 'auto',
-    userSelect: 'auto'
-  };
+  const inputClassName =
+    "mb-4 w-full rounded border border-[#ccc] bg-white p-3 text-base text-black";
 
   return (
-    <div style={{ 
-      minHeight: '100vh', 
-      display: 'flex', 
-      alignItems: 'center', 
-      justifyContent: 'center',
-      backgroundColor: '#f5f5f5',
-      padding: '20px'
-    }}>
-      <div style={{
-        backgroundColor: 'white',
-        padding: '40px',
-        borderRadius: '8px',
-        boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
-        width: '100%',
-        maxWidth: '400px'
-      }}>
-        <h1 style={{ textAlign: 'center', marginBottom: '30px', color: '#333' }}>
-          Canar - {isLogin ? 'Sign In' : 'Sign Up'}
+    <div className="flex min-h-screen items-center justify-center bg-[#f5f5f5] p-5">
+      <div className="w-full max-w-[25rem] rounded-lg bg-white p-6 shadow-[0_0.125rem_0.625rem_rgba(0,0,0,0.1)] sm:p-10">
+        <h1 className="mb-8 text-center text-3xl font-semibold text-[#333]">
+          Canar - {isLogin ? "Sign In" : "Sign Up"}
         </h1>
 
         <form onSubmit={isLogin ? handleLogin : handleRegister}>
@@ -91,7 +67,7 @@ export default function AuthMinimal() {
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            style={inputStyle}
+            className={inputClassName}
             required
           />
 
@@ -101,18 +77,18 @@ export default function AuthMinimal() {
               placeholder="Username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              style={inputStyle}
+              className={inputClassName}
               required
             />
           )}
 
-          <div style={{ position: 'relative' }}>
+          <div className="relative">
             <input
               type={showPassword ? "text" : "password"}
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              style={{ ...inputStyle, paddingRight: '44px' }}
+              className={`${inputClassName} pr-11`}
               minLength={8}
               required
             />
@@ -120,31 +96,20 @@ export default function AuthMinimal() {
               type="button"
               onClick={() => setShowPassword((current) => !current)}
               aria-label={showPassword ? "Hide password" : "Show password"}
-              style={{
-                position: 'absolute',
-                right: '12px',
-                top: '12px',
-                background: 'transparent',
-                border: 'none',
-                color: '#666',
-                cursor: 'pointer',
-                padding: 0,
-                display: 'flex',
-                zIndex: 1
-              }}
+              className="absolute right-3 top-3 z-[1] cursor-pointer border-0 bg-transparent p-0 text-[#666]"
             >
               {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
             </button>
           </div>
 
           {!isLogin && (
-            <div style={{ position: 'relative' }}>
+            <div className="relative">
               <input
                 type={showConfirmPassword ? "text" : "password"}
                 placeholder="Confirm Password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                style={{ ...inputStyle, paddingRight: '44px' }}
+                className={`${inputClassName} pr-11`}
                 minLength={8}
                 required
               />
@@ -152,18 +117,7 @@ export default function AuthMinimal() {
                 type="button"
                 onClick={() => setShowConfirmPassword((current) => !current)}
                 aria-label={showConfirmPassword ? "Hide confirm password" : "Show confirm password"}
-                style={{
-                  position: 'absolute',
-                  right: '12px',
-                  top: '12px',
-                  background: 'transparent',
-                  border: 'none',
-                  color: '#666',
-                  cursor: 'pointer',
-                  padding: 0,
-                  display: 'flex',
-                  zIndex: 1
-                }}
+                className="absolute right-3 top-3 z-[1] cursor-pointer border-0 bg-transparent p-0 text-[#666]"
               >
                 {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
               </button>
@@ -172,36 +126,20 @@ export default function AuthMinimal() {
 
           <button
             type="submit"
-            style={{
-              width: '100%',
-              padding: '12px',
-              backgroundColor: '#007bff',
-              color: 'white',
-              border: 'none',
-              borderRadius: '4px',
-              fontSize: '16px',
-              cursor: 'pointer',
-              marginBottom: '16px'
-            }}
+            className="mb-4 w-full cursor-pointer rounded border-0 bg-[#007bff] p-3 text-base text-white disabled:cursor-not-allowed disabled:opacity-70"
             disabled={loginMutation.isPending || registerMutation.isPending}
           >
-            {(loginMutation.isPending || registerMutation.isPending) ? 'Loading...' : (isLogin ? 'Sign In' : 'Sign Up')}
+            {(loginMutation.isPending || registerMutation.isPending) ? "Loading..." : (isLogin ? "Sign In" : "Sign Up")}
           </button>
 
-          <p style={{ textAlign: 'center', color: '#666' }}>
+          <p className="text-center text-[#666]">
             {isLogin ? "Don't have an account? " : "Already have an account? "}
             <button
               type="button"
               onClick={() => setIsLogin(!isLogin)}
-              style={{
-                background: 'none',
-                border: 'none',
-                color: '#007bff',
-                cursor: 'pointer',
-                textDecoration: 'underline'
-              }}
+              className="cursor-pointer border-0 bg-transparent text-[#007bff] underline"
             >
-              {isLogin ? 'Sign up' : 'Sign in'}
+              {isLogin ? "Sign up" : "Sign in"}
             </button>
           </p>
         </form>
